@@ -13,8 +13,9 @@ export function createHostUtils() {
         // We must validate the input to avoid URL-level parsing artifacts:
         // colons would be interpreted as port separators, brackets as IPv6,
         // @ as userinfo separator, # as fragment, ? as query, / as path,
-        // % as percent-encoding, etc.
-        if (/[:#?/@[\]%]/.test(domain)) {
+        // \ as path separator (equivalent to / in special schemes),
+        // % as percent-encoding, tab/LF/CR are silently stripped by the URL parser.
+        if (/[:#?/@[\]%\\\t\n\r]/.test(domain)) {
           throw new Error('domain contains invalid characters');
         }
         const url = new URL(`http://${domain}/`);
