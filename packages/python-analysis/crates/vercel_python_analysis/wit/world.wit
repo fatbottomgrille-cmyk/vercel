@@ -22,6 +22,17 @@ interface host-utils {
 
     /// Unicode NFKD normalization (compatibility decomposition).
     nfkd-normalize: func(s: string) -> string;
+
+    /// Validate a regex pattern. Returns ok if valid, error message if invalid.
+    /// The caller converts Rust regex syntax to JS syntax before calling
+    /// (e.g. `(?P<name>...)` → `(?<name>...)`).
+    regex-new: func(pattern: string) -> result<_, string>;
+
+    /// Find all regex matches with named capture groups.
+    /// Pattern is in JS regex syntax (converted from Rust syntax by the caller).
+    /// Returns JSON: `[{"overall":[start,end],"named":{"group":[start,end],...}},...]`
+    /// with UTF-8 byte offsets.
+    regex-find-all: func(pattern: string, text: string) -> string;
 }
 
 /// Import-only world used by the host-bridge crate to generate bindings

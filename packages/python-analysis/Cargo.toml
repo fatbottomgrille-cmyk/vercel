@@ -34,6 +34,7 @@ uv-pypi-types = { path = "crates/uv-pypi-types-stub" }
 
 [patch.crates-io]
 idna = { path = "crates/idna-stub" }
+regex = { path = "crates/regex-stub" }
 unicode-normalization = { path = "crates/unicode-normalization-stub" }
 unicode_names2 = { path = "crates/unicode-names2-stub" }
 

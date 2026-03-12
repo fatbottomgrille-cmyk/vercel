@@ -81,7 +81,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "63044e1ae8e69f3b5a92c736ca6269b8d12fa7efe39bf34ddb06d102cf0e2cab"
 dependencies = [
  "memchr",
- "regex-automata",
+ "regex-automata 0.4.14",
  "serde",
 ]
 
@@ -671,13 +671,33 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.12.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e10754a14b9137dd7b1e3e5b0493cc9171fdd105e0ab477f51b72e7f3ac0e276"
+version = "1.10.6"
+dependencies = [
+ "host-bridge",
+ "regex 1.10.6 (git+https://github.com/rust-lang/regex?tag=1.10.6)",
+ "serde",
+ "serde_json",
+ "wasm-test-support",
+]
+
+[[package]]
+name = "regex"
+version = "1.10.6"
+source = "git+https://github.com/rust-lang/regex?tag=1.10.6#ab88aa5c6824ebe7c4b4c72fe5191681783b3a68"
 dependencies = [
  "aho-corasick",
  "memchr",
- "regex-automata",
+ "regex-automata 0.4.7",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-automata"
+version = "0.4.7"
+source = "git+https://github.com/rust-lang/regex?tag=1.10.6#ab88aa5c6824ebe7c4b4c72fe5191681783b3a68"
+dependencies = [
+ "aho-corasick",
+ "memchr",
  "regex-syntax",
 ]
 
@@ -686,17 +706,11 @@ name = "regex-automata"
 version = "0.4.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6e1dd4122fc1595e8162618945476892eefca7b88c52820e74af6262213cae8f"
-dependencies = [
- "aho-corasick",
- "memchr",
- "regex-syntax",
-]
 
 [[package]]
 name = "regex-syntax"
-version = "0.8.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
+version = "0.8.4"
+source = "git+https://github.com/rust-lang/regex?tag=1.10.6#ab88aa5c6824ebe7c4b4c72fe5191681783b3a68"
 
 [[package]]
 name = "rend"
@@ -1191,7 +1205,7 @@ dependencies = [
  "boxcar",
  "indexmap",
  "itertools",
- "regex",
+ "regex 1.10.6",
  "rustc-hash",
  "serde",
  "smallvec",
