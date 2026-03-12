@@ -91,4 +91,50 @@ world python-analysis {
 
     /// Normalize a package name per PEP 503.
     export normalize-package-name: func(name: string) -> string;
+
+    // =========================================================================
+    // Requirements.txt parsing
+    // =========================================================================
+
+    /// Parsed VCS (Git) URL information.
+    record parsed-vcs-info {
+        /// Repository URL (without git+ prefix, @ref, or #fragment).
+        url: string,
+        /// Requested revision (branch, tag, or commit hash).
+        rev: option<string>,
+        /// Package name from #egg=name fragment.
+        egg: option<string>,
+    }
+
+    /// A single parsed requirement entry from requirements.txt.
+    record parsed-req-entry {
+        name: option<string>,
+        pep508: string,
+        extras: list<string>,
+        markers: option<string>,
+        version-spec: option<string>,
+        url: option<string>,
+        hashes: list<string>,
+        editable: bool,
+        /// Parsed VCS info if this is a git+ URL.
+        vcs: option<parsed-vcs-info>,
+        /// The URL/path as originally written by the user (before resolution).
+        given-url: option<string>,
+    }
+
+    /// Full parsed requirements.txt result.
+    record parsed-requirements-txt {
+        requirements: list<parsed-req-entry>,
+        editables: list<parsed-req-entry>,
+        requirement-files: list<string>,
+        constraint-files: list<string>,
+        index-url: option<string>,
+        extra-index-urls: list<string>,
+        find-links: list<string>,
+        no-index: bool,
+    }
+
+    /// Parse requirements.txt content into structured data.
+    /// `working-dir` is used to resolve relative paths to file:// URLs.
+    export parse-requirements-txt: func(content: string, working-dir: option<string>) -> result<parsed-requirements-txt, string>;
 }
