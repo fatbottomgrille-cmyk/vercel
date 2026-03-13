@@ -1,5 +1,11 @@
 # @vercel/python
 
+## 6.24.0
+
+### Minor Changes
+
+- Fix serving static files for a django WSGI app in vercel dev. ([#15501](https://github.com/vercel/vercel/pull/15501))
+
 ## 6.23.0
 
 ### Minor Changes

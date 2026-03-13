@@ -1,5 +1,11 @@
 # vercel-runtime
 
+## 0.9.0
+
+### Minor Changes
+
+- Fix serving static files for a django WSGI app in vercel dev. ([#15501](https://github.com/vercel/vercel/pull/15501))
+
 ## 0.8.0
 
 ### Minor Changes
